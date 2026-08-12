@@ -206,3 +206,29 @@ Isso recupera 2-3 horas por dia que você tava perdendo com pergunta repetida.
 
 Custa R$ 350 por mês. Sem setup, sem contrato. Quer uma demo?"
 ```
+
+---
+
+## Upgrade para NÍVEL 2 (se cliente perguntar sobre agendamento)
+
+Se cliente disser: "Mas e os agendamentos?", "E se cliente quiser marcar um horário?"
+
+**Resposta:**
+```
+"Ótima pergunta! Temos duas opções:
+
+NÍVEL 1 (R$ 350/mês): FAQ só — responde preço, serviço, forma de pagamento
+[Funciona bem pra pizzaria, loja, lanchonete]
+
+NÍVEL 2 (R$ 750/mês): FAQ + Agendamento — bot também marca horários
+[Bot integra com seu calendário, consulta disponibilidade, marca na hora]
+
+Qual faz mais sentido pro seu negócio?"
+```
+
+**Se cliente achar nível 2 melhor:**
+- Ótimo! Você sai de R$ 350 direto pra R$ 750
+- Ganha R$ 400 a mais por mês
+- E ainda fica mais complexo, justificando o preço
+
+
