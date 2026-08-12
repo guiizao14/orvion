@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ORVION - Bot FAQ pra seu WhatsApp | Responda 80% das perguntas automaticamente</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 16px;
+      max-width: 600px;
+      width: 100%;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 40px 30px;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .tagline {
+      font-size: 14px;
+      opacity: 0.95;
+      font-weight: 500;
+    }
+
+    .content {
+      padding: 40px 30px;
+    }
+
+    h1 {
+      font-size: 28px;
+      color: #1a1a1a;
+      margin-bottom: 15px;
+      line-height: 1.3;
+    }
+
+    .problem {
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      font-size: 15px;
+      color: #856404;
+      line-height: 1.6;
+    }
+
+    .problem strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .benefits {
+      margin-bottom: 30px;
+    }
+
+    .benefits h2 {
+      font-size: 18px;
+      color: #1a1a1a;
+      margin-bottom: 15px;
+    }
+
+    .benefit-item {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 12px;
+      align-items: flex-start;
+    }
+
+    .benefit-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .benefit-text {
+      font-size: 15px;
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .pricing {
+      background: #f5f5f5;
+      padding: 25px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .price {
+      font-size: 40px;
+      font-weight: bold;
+      color: #667eea;
+      margin-bottom: 5px;
+    }
+
+    .price-period {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .price-description {
+      font-size: 13px;
+      color: #888;
+      line-height: 1.5;
+    }
+
+    .cta-button {
+      display: block;
+      width: 100%;
+      padding: 16px 24px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-bottom: 15px;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    .secondary-cta {
+      display: block;
+      width: 100%;
+      padding: 14px 24px;
+      background: white;
+      color: #667eea;
+      border: 2px solid #667eea;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      transition: all 0.2s;
+    }
+
+    .secondary-cta:hover {
+      background: #f0f4ff;
+    }
+
+    .guarantee {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .features-list {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      font-size: 14px;
+      color: #333;
+      line-height: 1.8;
+    }
+
+    .features-list strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #1a1a1a;
+    }
+
+    .feature-item {
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .feature-item:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #10b981;
+      font-weight: bold;
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        border-radius: 0;
+      }
+
+      header {
+        padding: 30px 20px;
+      }
+
+      .content {
+        padding: 25px 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      .price {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">🤖 ORVION</div>
+      <div class="tagline">Bot FAQ Inteligente para WhatsApp</div>
+    </header>
+
+    <div class="content">
+      <h1>Deixe o bot responder as perguntas repetidas</h1>
+
+      <div class="problem">
+        <strong>Seu problema:</strong>
+        Você perde 2-3 horas por dia respondendo a mesma pergunta no WhatsApp: "Qual é o horário?", "Quanto custa?", "Vocês entregam lá?", "Aceita débito?". Enquanto isso, leads que poderiam virar venda ficam esperando resposta.
+      </div>
+
+      <div class="benefits">
+        <h2>Com ORVION, você ganha:</h2>
+        <div class="benefit-item">
+          <div class="benefit-icon">⚡</div>
+          <div class="benefit-text"><strong>80% das perguntas respondidas automaticamente</strong> — o bot sabe sua FAQ de cor</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">👥</div>
+          <div class="benefit-text"><strong>Bot inteligente que sai do caminho</strong> — quando você digita uma resposta, o bot cala e deixa você assumir</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">📊</div>
+          <div class="benefit-text"><strong>Dashboard de leads</strong> — ve quem perguntou, o que perguntou, quem é quente, morno ou frio</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">⏰</div>
+          <div class="benefit-text"><strong>Economiza 2h+ por dia</strong> — tempo pra vender, não responder o que já tá na FAQ</div>
+        </div>
+        <div class="benefit-item">
+          <div class="benefit-icon">😊</div>
+          <div class="benefit-text"><strong>Saudação 24h</strong> — cliente nunca fica sem resposta, mesmo de madrugada</div>
+        </div>
+      </div>
+
+      <div class="features-list">
+        <strong>O que está incluído:</strong>
+        <div class="feature-item">Bot responde FAQ automaticamente no mesmo número do WhatsApp</div>
+        <div class="feature-item">Dashboard em tempo real com cada lead (nome, pergunta, resposta)</div>
+        <div class="feature-item">Classifica leads por temperatura: QUENTE (vai comprar), MORNO, FRIO</div>
+        <div class="feature-item">Integração com o seu número (usa a Evolution API)</div>
+        <div class="feature-item">Setup e treinamento do bot com você (30 min de entrevista)</div>
+        <div class="feature-item">Suporte 24h — qualquer dúvida, a gente resolve</div>
+      </div>
+
+      <div class="pricing">
+        <div class="price">R$ 350</div>
+        <div class="price-period">por mês</div>
+        <div class="price-description">Sem setup, sem contrato. Cancela quando quiser.</div>
+      </div>
+
+      <button class="cta-button" onclick="window.location.href='https://wa.me/+5527999999999?text=Oi!%20Vi%20o%20ORVION%20e%20queria%20saber%20mais%20sobre%20o%20bot%20FAQ.%20Meu%20negócio%20é%20[tipo]%20e%20recebo%20muitas%20perguntas%20repetidas.%20Posso%20agendar%20uma%20demo?';">
+        💬 Falar comigo no WhatsApp
+      </button>
+
+      <a href="tel:+5527999999999" class="secondary-cta">☎️ Ligar agora</a>
+
+      <div class="guarantee">
+        ✨ Primeira conversa é de graça — sem compromisso
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simples analytics: registra se a pessoa clicou (opcional)
+    document.querySelectorAll('.cta-button, .secondary-cta').forEach(btn => {
+      btn.addEventListener('click', () => {
+        console.log('CTA clicked:', btn.textContent);
+      });
+    });
+  </script>
+</body>
+</html>
