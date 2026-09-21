@@ -1,315 +1,482 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ORVION - Bot FAQ pra seu WhatsApp | Responda 80% das perguntas automaticamente</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
-
-    body {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .container {
-      background: white;
-      border-radius: 16px;
-      max-width: 600px;
-      width: 100%;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    }
-
-    header {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 40px 30px;
-      text-align: center;
-    }
-
-    .logo {
-      font-size: 32px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-
-    .tagline {
-      font-size: 14px;
-      opacity: 0.95;
-      font-weight: 500;
-    }
-
-    .content {
-      padding: 40px 30px;
-    }
-
-    h1 {
-      font-size: 28px;
-      color: #1a1a1a;
-      margin-bottom: 15px;
-      line-height: 1.3;
-    }
-
-    .problem {
-      background: #fff3cd;
-      border-left: 4px solid #ffc107;
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 30px;
-      font-size: 15px;
-      color: #856404;
-      line-height: 1.6;
-    }
-
-    .problem strong {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 16px;
-    }
-
-    .benefits {
-      margin-bottom: 30px;
-    }
-
-    .benefits h2 {
-      font-size: 18px;
-      color: #1a1a1a;
-      margin-bottom: 15px;
-    }
-
-    .benefit-item {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 12px;
-      align-items: flex-start;
-    }
-
-    .benefit-icon {
-      font-size: 22px;
-      flex-shrink: 0;
-    }
-
-    .benefit-text {
-      font-size: 15px;
-      color: #333;
-      line-height: 1.5;
-    }
-
-    .pricing {
-      background: #f5f5f5;
-      padding: 25px;
-      border-radius: 12px;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-
-    .price {
-      font-size: 40px;
-      font-weight: bold;
-      color: #667eea;
-      margin-bottom: 5px;
-    }
-
-    .price-period {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 15px;
-    }
-
-    .price-description {
-      font-size: 13px;
-      color: #888;
-      line-height: 1.5;
-    }
-
-    .cta-button {
-      display: block;
-      width: 100%;
-      padding: 16px 24px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      text-align: center;
-      transition: transform 0.2s, box-shadow 0.2s;
-      margin-bottom: 15px;
-    }
-
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-    }
-
-    .secondary-cta {
-      display: block;
-      width: 100%;
-      padding: 14px 24px;
-      background: white;
-      color: #667eea;
-      border: 2px solid #667eea;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      text-align: center;
-      transition: all 0.2s;
-    }
-
-    .secondary-cta:hover {
-      background: #f0f4ff;
-    }
-
-    .guarantee {
-      text-align: center;
-      font-size: 13px;
-      color: #888;
-      margin-top: 20px;
-      padding-top: 20px;
-      border-top: 1px solid #eee;
-    }
-
-    .features-list {
-      background: #f9f9f9;
-      padding: 20px;
-      border-radius: 8px;
-      margin-bottom: 25px;
-      font-size: 14px;
-      color: #333;
-      line-height: 1.8;
-    }
-
-    .features-list strong {
-      display: block;
-      margin-bottom: 10px;
-      color: #1a1a1a;
-    }
-
-    .feature-item {
-      margin-bottom: 8px;
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .feature-item:before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #10b981;
-      font-weight: bold;
-    }
-
-    @media (max-width: 480px) {
-      .container {
-        border-radius: 0;
-      }
-
-      header {
-        padding: 30px 20px;
-      }
-
-      .content {
-        padding: 25px 20px;
-      }
-
-      h1 {
-        font-size: 24px;
-      }
-
-      .price {
-        font-size: 32px;
-      }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <header>
-      <div class="logo">🤖 ORVION</div>
-      <div class="tagline">Bot FAQ Inteligente para WhatsApp</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#080B12" />
+    <meta
+      name="description"
+      content="A ORVION melhora os pontos que conectam sua empresa aos clientes, da primeira visita ao contato comercial. Vamos analisar sua presença digital?"
+    />
+    <meta property="og:title" content="ORVION — Presença digital com direção" />
+    <meta
+      property="og:description"
+      content="Transforme uma presença dispersa em um caminho mais claro até o cliente. Tudo começa com uma conversa."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <title>ORVION — Presença digital com direção</title>
+    <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#inicio" aria-label="ORVION, início"
+          ><img
+            src="/brand/logo-light.svg"
+            width="172"
+            height="31"
+            alt="ORVION"
+        /></a>
+        <nav id="navigation" aria-label="Navegação principal">
+          <a href="#como-funciona">Como funciona</a
+          ><a href="#analise">O que analisamos</a><a href="#contato">Contato</a>
+        </nav>
+        <a
+          class="button header-cta"
+          href="https://wa.me/5527999408858"
+          data-message="general"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Analisar presença digital <span aria-hidden="true">↗</span></a
+        >
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-controls="navigation"
+          aria-expanded="false"
+          aria-label="Abrir menu"
+        >
+          <span></span><span></span>
+        </button>
+      </div>
     </header>
-
-    <div class="content">
-      <h1>Deixe o bot responder as perguntas repetidas</h1>
-
-      <div class="problem">
-        <strong>Seu problema:</strong>
-        Você perde 2-3 horas por dia respondendo a mesma pergunta no WhatsApp: "Qual é o horário?", "Quanto custa?", "Vocês entregam lá?", "Aceita débito?". Enquanto isso, leads que poderiam virar venda ficam esperando resposta.
-      </div>
-
-      <div class="benefits">
-        <h2>Com ORVION, você ganha:</h2>
-        <div class="benefit-item">
-          <div class="benefit-icon">⚡</div>
-          <div class="benefit-text"><strong>80% das perguntas respondidas automaticamente</strong> — o bot sabe sua FAQ de cor</div>
+    <main id="conteudo">
+      <section class="hero container" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="tiny-line"></span> Presença digital
+          </p>
+          <h1 id="hero-title">
+            Sua presença digital está ajudando sua empresa a vender
+            <span class="muted">— ou apenas existindo?</span>
+          </h1>
+          <p class="hero-description">
+            A ORVION melhora os pontos que conectam sua empresa aos clientes, da
+            primeira visita ao contato comercial.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="button primary"
+              href="https://wa.me/5527999408858"
+              data-message="diagnosis"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Analisar minha presença digital
+              <span aria-hidden="true">↗</span></a
+            ><a
+              class="text-link"
+              href="https://wa.me/5527999408858"
+              data-message="general"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Falar com a ORVION <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <p class="microcopy">
+            Uma conversa inicial para entender onde existem oportunidades.
+          </p>
         </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">👥</div>
-          <div class="benefit-text"><strong>Bot inteligente que sai do caminho</strong> — quando você digita uma resposta, o bot cala e deixa você assumir</div>
+        <div
+          class="hero-art"
+          role="img"
+          aria-label="Canais dispersos se conectam à ORVION e formam um caminho até uma oportunidade."
+        >
+          <div class="art-grid"></div>
+          <svg
+            class="network"
+            viewBox="0 0 600 620"
+            fill="none"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient id="line-fade">
+                <stop stop-color="#526176" stop-opacity=".15" />
+                <stop offset="1" stop-color="#526176" stop-opacity=".65" />
+              </linearGradient>
+            </defs>
+            <g class="connections" stroke="url(#line-fade)" stroke-width="1">
+              <path d="M54 138H138Q168 138 188 158L252 222" />
+              <path d="M10 312H172Q198 312 218 292L252 258" />
+              <path d="M80 487H130Q158 487 178 467L252 390V320" />
+              <path d="M366 244L412 198Q430 180 460 180H544" />
+              <path d="M365 300H444Q463 300 480 317L530 367" />
+              <path d="M328 333V422Q328 447 355 447H532" />
+            </g>
+            <g class="flow" stroke="#FF5A5F" stroke-width="1.5">
+              <path pathLength="100" d="M10 312H172Q198 312 218 292L252 258" />
+              <path pathLength="100" d="M328 333V422Q328 447 355 447H532" />
+            </g>
+            <g fill="#526176">
+              <circle cx="54" cy="138" r="3" />
+              <circle cx="10" cy="312" r="3" />
+              <circle cx="80" cy="487" r="3" />
+              <circle cx="544" cy="180" r="3" />
+              <circle cx="530" cy="367" r="3" />
+              <circle cx="115" cy="225" r="1.5" />
+              <circle cx="432" cy="91" r="1.5" />
+              <circle cx="437" cy="538" r="1.5" />
+            </g>
+            <circle
+              class="opportunity-halo"
+              cx="532"
+              cy="447"
+              r="14"
+              fill="#FF5A5F"
+              opacity=".08"
+            />
+            <circle cx="532" cy="447" r="4" fill="#FF5A5F" />
+          </svg>
+          <div class="hero-symbol">
+            <img
+              src="/brand/symbol-animated.svg"
+              alt=""
+              width="168"
+              height="171"
+            />
+          </div>
+          <div class="art-label label-visit">Uma visita</div>
+          <div class="art-label label-search">Uma busca</div>
+          <div class="art-label label-interest">Um interesse</div>
+          <div class="art-label label-clarity">Mais clareza</div>
+          <div class="art-label label-contact">Uma conversa</div>
+          <div class="art-label label-opportunity">Uma oportunidade</div>
+          <img
+            class="art-wordmark"
+            src="/brand/logo-light.svg"
+            width="145"
+            height="26"
+            alt=""
+          />
+          <div class="art-caption">
+            <span class="coral-dot"></span> Do disperso ao conectado.
+          </div>
         </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">📊</div>
-          <div class="benefit-text"><strong>Dashboard de leads</strong> — ve quem perguntou, o que perguntou, quem é quente, morno ou frio</div>
+        <div class="hero-bottom">
+          <span>Presença com direção. Conexões com propósito.</span
+          ><a href="#presenca"
+            >Explore o caminho <span aria-hidden="true">↓</span></a
+          >
         </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">⏰</div>
-          <div class="benefit-text"><strong>Economiza 2h+ por dia</strong> — tempo pra vender, não responder o que já tá na FAQ</div>
+      </section>
+      <section class="problem section" id="presenca">
+        <div class="container">
+          <div class="section-intro reveal">
+            <span class="section-index" aria-hidden="true"
+              >01 / O ponto de partida</span
+            >
+            <h2>
+              Estar online não é o mesmo que estar preparado para converter.
+            </h2>
+            <p>
+              Muitas empresas têm Instagram, site, WhatsApp e anúncios, mas cada
+              ponto funciona de forma isolada. O visitante chega, fica em dúvida
+              e desaparece antes de iniciar uma conversa.
+            </p>
+          </div>
+          <ol
+            class="journey"
+            aria-label="Caminho do visitante até a oportunidade"
+          >
+            <li class="reveal">
+              <span class="journey-number">01</span>
+              <h3>Visita</h3>
+              <p>Sua empresa é encontrada.</p>
+            </li>
+            <li class="reveal">
+              <span class="journey-number">02</span>
+              <h3>Clareza</h3>
+              <p>O valor fica evidente.</p>
+            </li>
+            <li class="reveal">
+              <span class="journey-number">03</span>
+              <h3>Contato</h3>
+              <p>A conversa tem um caminho.</p>
+            </li>
+            <li class="reveal">
+              <span class="journey-number final-dot">04</span>
+              <h3>Oportunidade</h3>
+              <p>O interesse pode avançar.</p>
+            </li>
+          </ol>
         </div>
-        <div class="benefit-item">
-          <div class="benefit-icon">😊</div>
-          <div class="benefit-text"><strong>Saudação 24h</strong> — cliente nunca fica sem resposta, mesmo de madrugada</div>
+      </section>
+      <section class="approach section container">
+        <div class="approach-title reveal">
+          <h2>
+            Nós organizamos a presença digital para ela
+            <span class="muted">trabalhar melhor.</span>
+          </h2>
+        </div>
+        <div class="approach-detail reveal">
+          <p>
+            Antes de recomendar qualquer solução, entendemos como sua empresa é
+            encontrada, como é percebida e o que acontece depois que alguém
+            demonstra interesse.
+          </p>
+          <div class="principles">
+            <span>Clareza</span><span>Estrutura</span><span>Conexão</span
+            ><span>Conversão</span><span>Acompanhamento</span>
+          </div>
+          <p class="small-note">O ponto de partida é o seu negócio.</p>
+        </div>
+      </section>
+      <section class="analysis section" id="analise">
+        <div class="container analysis-layout">
+          <div class="analysis-intro reveal">
+            <span class="section-index" aria-hidden="true"
+              >02 / Um olhar completo</span
+            >
+            <h2>O que<br />analisamos<span class="coral">.</span></h2>
+            <p>Quatro momentos. Um mesmo caminho até o cliente.</p>
+            <p class="small-note">
+              Explore cada ponto da sua presença digital.
+            </p>
+            <div class="analysis-mark" aria-hidden="true">
+              <img
+                loading="lazy"
+                src="/brand/symbol-mono.svg"
+                width="140"
+                height="143"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="analysis-options">
+            <details class="analysis-item reveal" open>
+              <summary>
+                <span class="option-number">01</span
+                ><span>Como as pessoas encontram sua empresa.</span
+                ><span class="plus" aria-hidden="true"></span>
+              </summary>
+              <div class="analysis-body">
+                <p>
+                  O caminho começa antes do site. Observamos como sua empresa
+                  aparece nos canais de busca, nas redes e nas indicações, e
+                  para onde cada visita é direcionada.
+                </p>
+                <span>Ser encontrado é o primeiro passo.</span>
+              </div>
+            </details>
+            <details class="analysis-item reveal">
+              <summary>
+                <span class="option-number">02</span
+                ><span>O que entendem quando chegam.</span
+                ><span class="plus" aria-hidden="true"></span>
+              </summary>
+              <div class="analysis-body">
+                <p>
+                  A mensagem precisa fazer sentido para quem chega. Analisamos a
+                  clareza da proposta, a organização da página e as informações
+                  que ajudam o visitante a confiar na sua empresa.
+                </p>
+                <span>Clareza para reconhecer o seu valor.</span>
+              </div>
+            </details>
+            <details class="analysis-item reveal">
+              <summary>
+                <span class="option-number">03</span
+                ><span>Como iniciam o contato.</span
+                ><span class="plus" aria-hidden="true"></span>
+              </summary>
+              <div class="analysis-body">
+                <p>
+                  Entre o interesse e a conversa, qualquer atrito pesa.
+                  Avaliamos chamadas, formulários e o caminho até o WhatsApp
+                  para tornar o próximo passo simples e evidente.
+                </p>
+                <span>Menos dúvidas sobre como avançar.</span>
+              </div>
+            </details>
+            <details class="analysis-item reveal">
+              <summary>
+                <span class="option-number">04</span
+                ><span>O que acontece depois do primeiro contato.</span
+                ><span class="plus" aria-hidden="true"></span>
+              </summary>
+              <div class="analysis-body">
+                <p>
+                  O trabalho continua quando a mensagem chega. Entendemos como o
+                  atendimento acolhe, organiza e acompanha cada interesse, e
+                  onde inteligência e automação podem apoiar a equipe.
+                </p>
+                <span>Continuidade para uma boa conversa.</span>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+      <section class="process section container" id="como-funciona">
+        <div class="process-intro reveal">
+          <h2>
+            Começamos entendendo.<br /><span class="muted"
+              >Depois construímos o que faz sentido.</span
+            >
+          </h2>
+          <p>
+            Decisões orientadas pelo seu momento, do diagnóstico à evolução.
+          </p>
+          <a
+            class="text-link"
+            href="https://wa.me/5527999408858"
+            data-message="general"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Vamos conversar <span aria-hidden="true">↗</span></a
+          >
+        </div>
+        <ol class="timeline">
+          <li class="reveal">
+            <span>01</span>
+            <div>
+              <h3>Conversa inicial</h3>
+              <p>
+                Entendemos o negócio, o público e onde surgem as oportunidades.
+              </p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span>02</span>
+            <div>
+              <h3>Leitura da presença atual</h3>
+              <p>
+                Observamos os pontos de contato e os atritos no caminho até a
+                conversa.
+              </p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span>03</span>
+            <div>
+              <h3>Estrutura recomendada</h3>
+              <p>Definimos o que precisa ser melhorado e em que ordem.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span>04</span>
+            <div>
+              <h3>Implementação</h3>
+              <p>Construímos e conectamos as partes necessárias.</p>
+            </div>
+          </li>
+          <li class="reveal">
+            <span>05</span>
+            <div>
+              <h3>Evolução</h3>
+              <p>
+                Acompanhamos o que pode ser ajustado para a presença continuar
+                trabalhando melhor.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </section>
+      <section class="solution section">
+        <div class="container">
+          <div class="solution-intro reveal">
+            <h2>A solução muda<br />conforme o problema.</h2>
+            <p>
+              Em alguns casos, o principal gargalo está na página. Em outros,
+              está no atendimento, na captação ou no acompanhamento. A ORVION
+              combina os elementos necessários para construir uma presença
+              digital mais coerente com o objetivo do negócio.
+            </p>
+          </div>
+          <div
+            class="solution-map reveal"
+            aria-label="Presença, página, contato, inteligência, automação e acompanhamento conectados ao objetivo do negócio"
+          >
+            <div class="map-top">
+              <span>Presença</span><span>Página</span><span>Contato</span>
+            </div>
+            <div class="map-center">
+              <span class="coral-dot"></span> O objetivo do seu negócio
+            </div>
+            <div class="map-bottom">
+              <span>Inteligência</span><span>Automação</span
+              ><span>Acompanhamento</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="contact section container" id="contato">
+        <span class="eyebrow reveal"
+          ><span class="tiny-line"></span> O próximo passo começa aqui</span
+        >
+        <h2 class="reveal">
+          Vamos descobrir onde sua presença digital pode
+          <span class="muted">trabalhar melhor?</span>
+        </h2>
+        <p class="reveal">
+          Conte um pouco sobre sua empresa e vamos identificar os próximos
+          passos.
+        </p>
+        <div class="contact-actions reveal">
+          <a
+            class="button primary"
+            href="https://wa.me/5527999408858"
+            data-message="diagnosis"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Quero analisar minha presença digital
+            <span aria-hidden="true">↗</span></a
+          ><a
+            class="text-link"
+            href="https://wa.me/5527999408858"
+            data-message="general"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Falar pelo WhatsApp <span aria-hidden="true">↗</span></a
+          >
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer container">
+      <div class="footer-main">
+        <a class="brand" href="#inicio" aria-label="ORVION, início"
+          ><img
+            loading="lazy"
+            src="/brand/logo-light.svg"
+            width="172"
+            height="31"
+            alt="ORVION"
+        /></a>
+        <p>Presença digital que conecta<br />sua empresa às oportunidades.</p>
+        <a
+          class="text-link"
+          href="https://wa.me/5527999408858"
+          target="_blank"
+          rel="noopener noreferrer"
+          >+55 27 99940-8858 <span aria-hidden="true">↗</span></a
+        >
+      </div>
+      <div class="footer-bottom">
+        <span
+          >© <span id="year">2026</span> ORVION. Todos os direitos
+          reservados.</span
+        >
+        <div>
+          <a href="#como-funciona">Como funciona</a
+          ><a href="#analise">O que analisamos</a
+          ><a href="#inicio">Voltar ao início ↑</a>
         </div>
       </div>
-
-      <div class="features-list">
-        <strong>O que está incluído:</strong>
-        <div class="feature-item">Bot responde FAQ automaticamente no mesmo número do WhatsApp</div>
-        <div class="feature-item">Dashboard em tempo real com cada lead (nome, pergunta, resposta)</div>
-        <div class="feature-item">Classifica leads por temperatura: QUENTE (vai comprar), MORNO, FRIO</div>
-        <div class="feature-item">Integração com o seu número (usa a Evolution API)</div>
-        <div class="feature-item">Setup e treinamento do bot com você (30 min de entrevista)</div>
-        <div class="feature-item">Suporte 24h — qualquer dúvida, a gente resolve</div>
-      </div>
-
-      <div class="pricing">
-        <div class="price">R$ 350</div>
-        <div class="price-period">por mês</div>
-        <div class="price-description">Sem setup, sem contrato. Cancela quando quiser.</div>
-      </div>
-
-      <button class="cta-button" onclick="window.location.href='https://wa.me/+5527999999999?text=Oi!%20Vi%20o%20ORVION%20e%20queria%20saber%20mais%20sobre%20o%20bot%20FAQ.%20Meu%20negócio%20é%20[tipo]%20e%20recebo%20muitas%20perguntas%20repetidas.%20Posso%20agendar%20uma%20demo?';">
-        💬 Falar comigo no WhatsApp
-      </button>
-
-      <a href="tel:+5527999999999" class="secondary-cta">☎️ Ligar agora</a>
-
-      <div class="guarantee">
-        ✨ Primeira conversa é de graça — sem compromisso
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Simples analytics: registra se a pessoa clicou (opcional)
-    document.querySelectorAll('.cta-button, .secondary-cta').forEach(btn => {
-      btn.addEventListener('click', () => {
-        console.log('CTA clicked:', btn.textContent);
-      });
-    });
-  </script>
-</body>
+    </footer>
+    <script type="module" src="./main.js"></script>
+  </body>
 </html>

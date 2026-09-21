@@ -6,17 +6,22 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:ui": "node scripts/qa.mjs",
+    "build:landing": "vite build && node scripts/export-landing.mjs"
   },
   "dependencies": {
+    "@fontsource-variable/manrope": "^5.3.0",
     "@supabase/supabase-js": "^2.45.4",
     "@tabler/icons-react": "^3.19.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
+    "playwright": "1.62.1",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
     "vite": "^5.4.8"

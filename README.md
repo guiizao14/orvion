@@ -1,5 +1,28 @@
 # ORVION Dashboard
 
+## Landing institucional
+
+A nova landing de presença digital está em `/landing/`, com CSS e JavaScript
+isolados do dashboard, que permanece em `/`. O build gera as duas entradas.
+
+```bash
+pnpm install --frozen-lockfile
+pnpm dev
+pnpm build
+pnpm preview --host 127.0.0.1 --port 4173
+```
+
+Para repetir a validação, com a prévia rodando em outro terminal:
+
+```bash
+pnpm exec playwright install chromium
+pnpm test:ui
+```
+
+As capturas e os resultados ficam em `qa/` (não versionado).
+Veja [a documentação da landing](landing/README.md) para publicação,
+identidade visual, referências e limites dos testes.
+
 Dashboard React responsivo para gestão de leads de WhatsApp, com integração Supabase (dados + real-time).
 
 ## Rodando localmente
