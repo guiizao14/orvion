@@ -88,7 +88,10 @@ let observer;
 function configureMotion() {
   observer?.disconnect();
   const elements = document.querySelectorAll(".reveal");
-  elements.forEach((element) => element.classList.remove("waiting"));
+  elements.forEach((element, index) => {
+    element.classList.remove("waiting");
+    element.style.setProperty("--reveal-delay", `${(index % 4) * 75}ms`);
+  });
   if (reducedMotion.matches || !("IntersectionObserver" in window)) return;
   observer = new IntersectionObserver(
     (entries) =>

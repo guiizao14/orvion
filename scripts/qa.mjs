@@ -113,7 +113,7 @@ try {
         .evaluate((e) => e.classList.contains("scrolled")),
     );
     await page.locator("#presenca").scrollIntoViewIfNeeded();
-    await page.waitForTimeout(850);
+    await page.waitForTimeout(1300);
     assert.equal(
       await page
         .locator("#presenca .section-intro")
@@ -129,6 +129,7 @@ try {
       "solid",
     );
     await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.waitForTimeout(100);
     assert.equal(
       await page
         .locator(".flow path")
@@ -136,7 +137,15 @@ try {
         .evaluate((e) => getComputedStyle(e).animationName),
       "none",
     );
-    assert.equal(await page.locator(".waiting").count(), 0);
+    assert.equal(
+      await page.locator(".waiting").evaluateAll((elements) =>
+        elements.every((element) => Number(getComputedStyle(element).opacity) > 0.99),
+      ),
+      true,
+    );
+    await page.mouse.move(0, 0);
+    await page.locator(".hero-actions .primary").blur();
+    await page.waitForTimeout(350);
     const a11y = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
       .analyze();

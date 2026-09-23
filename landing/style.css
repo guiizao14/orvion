@@ -223,6 +223,20 @@ nav a:hover,
   background: var(--surface);
   transform: translateY(-2px);
 }
+.button:not(:hover):not(:focus-visible) {
+  opacity: 0.78;
+}
+.primary:not(:hover):not(:focus-visible) {
+  opacity: 1;
+}
+.hero-actions:has(.primary:hover) .text-link,
+.contact-actions:has(.primary:hover) .text-link {
+  opacity: 0.42;
+}
+.hero-actions:has(.text-link:hover) .primary,
+.contact-actions:has(.text-link:hover) .primary {
+  opacity: 0.72;
+}
 .header-cta {
   min-height: 40px;
   padding: 10px 16px;
@@ -314,6 +328,7 @@ nav a:hover,
   isolation: isolate;
   min-width: 0;
   margin-left: -15px;
+  overflow: clip;
 }
 .hero-art:before {
   content: "";
@@ -324,6 +339,44 @@ nav a:hover,
     radial-gradient(ellipse at 75% 70%, #ff5a5f08, transparent 40%);
   z-index: -1;
 }
+.ambient,
+.signal-field {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.ambient {
+  filter: blur(18px);
+  mix-blend-mode: screen;
+  opacity: 0.65;
+  background-size: 120% 120%;
+}
+.ambient-a {
+  background: radial-gradient(circle at 12% 30%, #52617638 0 1px, transparent 9%), radial-gradient(circle at 64% 74%, #ff5a5f18 0 1px, transparent 16%);
+  animation: ambient-drift 12s ease-in-out infinite alternate;
+}
+.ambient-b {
+  background: radial-gradient(ellipse at 72% 21%, #263f6630, transparent 25%), radial-gradient(ellipse at 27% 78%, #15274050, transparent 30%);
+  animation: ambient-drift 17s ease-in-out infinite alternate-reverse;
+}
+.signal-field i {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #93a6bf;
+  box-shadow: 0 0 12px #526176;
+  opacity: 0;
+  animation: signal-rise 6s linear infinite;
+}
+.signal-field i:nth-child(1) { left: 7%; bottom: 6%; animation-delay: -1.5s; }
+.signal-field i:nth-child(2) { left: 25%; bottom: 3%; animation-delay: -4.1s; }
+.signal-field i:nth-child(3) { left: 46%; bottom: 12%; animation-delay: -2.7s; }
+.signal-field i:nth-child(4) { left: 62%; bottom: 1%; animation-delay: -5.2s; }
+.signal-field i:nth-child(5) { left: 80%; bottom: 16%; animation-delay: -3.6s; }
+.signal-field i:nth-child(6) { left: 92%; bottom: 5%; animation-delay: -1s; }
+.signal-field i:nth-child(7) { left: 36%; bottom: 20%; animation-delay: -5.8s; }
 .art-grid {
   position: absolute;
   inset: 30px 0 40px;
@@ -347,6 +400,16 @@ nav a:hover,
 .hero-symbol img {
   width: 100%;
   height: auto;
+}
+.hero-symbol:after {
+  content: "";
+  position: absolute;
+  inset: -26%;
+  z-index: -1;
+  border-radius: 50%;
+  border: 1px solid #52617636;
+  box-shadow: 0 0 70px #20314b30;
+  animation: symbol-pulse 5.4s ease-in-out infinite;
 }
 .connections {
   animation: connect 1.6s ease both;
@@ -393,13 +456,44 @@ nav a:hover,
   top: 76%;
   color: var(--text);
 }
-.art-wordmark {
+.art-lockup {
   position: absolute;
-  left: 41%;
-  top: 64%;
-  width: 100px;
-  height: auto;
+  z-index: 3;
+  left: 52%;
+  top: 64.5%;
+  width: 126px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, #080b12 15% 85%, transparent);
   animation: wordmark 1.8s ease both;
+}
+.art-lockup span {
+  position: absolute;
+  width: 44px;
+  height: 1px;
+  top: -10px;
+  background: linear-gradient(90deg, transparent, #ff5a5f, transparent);
+  opacity: 0.8;
+}
+.art-lockup::before,
+.art-lockup::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 1px;
+  background: #52617680;
+}
+.art-lockup::before { right: calc(100% + 8px); }
+.art-lockup::after { left: calc(100% + 8px); }
+.art-wordmark {
+  width: 104px;
+  height: auto;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 4px 12px #080b12);
 }
 .art-caption {
   position: absolute;
@@ -829,12 +923,14 @@ details[open] .plus:before {
 }
 .reveal {
   transition:
-    opacity 0.75s ease,
-    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.85s ease var(--reveal-delay, 0ms),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    filter 0.85s ease var(--reveal-delay, 0ms);
 }
 .reveal.waiting {
-  opacity: 0.2;
-  transform: translateY(18px);
+  opacity: 0;
+  transform: translateY(30px) scale(0.985);
+  filter: blur(3px);
 }
 .journey .waiting:before {
   transform: scaleX(0.1);
@@ -846,12 +942,26 @@ details[open] .plus:before {
   0%,
   60% {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translate(-50%, 4px);
   }
   100% {
     opacity: 0.85;
-    transform: translateY(0);
+    transform: translateX(-50%);
   }
+}
+@keyframes ambient-drift {
+  from { background-position: 0% 0%; }
+  to { background-position: 100% 100%; }
+}
+@keyframes signal-rise {
+  0% { transform: translate3d(0, 26px, 0) scale(0.5); opacity: 0; }
+  20% { opacity: 0.5; }
+  75% { opacity: 0.12; }
+  100% { transform: translate3d(20px, -260px, 0) scale(1.3); opacity: 0; }
+}
+@keyframes symbol-pulse {
+  0%, 100% { transform: scale(0.9); opacity: 0.15; }
+  55% { transform: scale(1.08); opacity: 0.55; }
 }
 @keyframes connect {
   from {
@@ -1145,9 +1255,14 @@ details[open] .plus:before {
   }
   .art-wordmark {
     width: 78px;
-    left: 42%;
-    top: 63%;
   }
+  .art-lockup {
+    left: 52%;
+    top: 64%;
+    width: 96px;
+    height: 27px;
+  }
+  .art-lockup span { top: -8px; }
   .hero-bottom {
     bottom: 14px;
     font-size: 8px;
@@ -1376,6 +1491,11 @@ details[open] .plus:before {
   }
   .art-wordmark {
     opacity: 1;
+  }
+  .ambient,
+  .signal-field,
+  .hero-symbol:after {
+    animation: none !important;
   }
   .journey .waiting:before {
     transform: none;
