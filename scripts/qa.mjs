@@ -28,6 +28,18 @@ try {
     await page.goto(`${base}/landing/`, { waitUntil: "networkidle" });
     await page.waitForTimeout(1900);
     assert.equal(await page.locator("h1").count(), 1);
+    assert.notEqual(
+      await page.locator(".flow path").first().evaluate((e) => getComputedStyle(e).animationName),
+      "none",
+      `visible hero motion ${width}`,
+    );
+    await page.evaluate(() => window.scrollTo({ top: document.body.scrollHeight, behavior: "instant" }));
+    await page.waitForTimeout(120);
+    assert.equal(await page.locator("html").getAttribute("data-scroll-direction"), "down");
+    assert.ok(Number(await page.locator(".scroll-progress").getAttribute("aria-valuenow")) > 90);
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+    await page.waitForTimeout(120);
+    assert.equal(await page.locator("html").getAttribute("data-scroll-direction"), "up");
     assert.equal(
       await page.evaluate(
         () => document.documentElement.scrollWidth > innerWidth,
@@ -87,7 +99,7 @@ try {
       .locator(".analysis-item")
       .nth(0)
       .evaluate((e) => getComputedStyle(e).opacity);
-    assert.equal(opacity, "0.8");
+    assert.ok(Math.abs(Number(opacity) - 0.8) < 0.01, `dimmed option opacity ${opacity}`);
     await page.keyboard.press("Space");
     await page.waitForTimeout(1000);
     assert.equal(await page.locator(".analysis-item[open]").count(), 0);

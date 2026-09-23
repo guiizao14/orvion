@@ -56,6 +56,37 @@ window.addEventListener(
   { passive: true },
 );
 updateHeader();
+const progress = document.querySelector(".scroll-progress");
+let previousScrollY = window.scrollY;
+let scrollDirection = "down";
+let scrollFrame = false;
+let directionTimer;
+function updateScrollEffects() {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const amount = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
+  const currentY = window.scrollY;
+  if (Math.abs(currentY - previousScrollY) > 2) {
+    scrollDirection = currentY > previousScrollY ? "down" : "up";
+    document.documentElement.dataset.scrollDirection = scrollDirection;
+    clearTimeout(directionTimer);
+    directionTimer = setTimeout(() => {
+      document.documentElement.dataset.scrollDirection = "still";
+    }, 180);
+  }
+  previousScrollY = currentY;
+  document.documentElement.style.setProperty("--page-progress", `${amount * 100}%`);
+  document.documentElement.style.setProperty("--scroll-shift", `${amount * 180}px`);
+  progress?.setAttribute("aria-valuenow", String(Math.round(amount * 100)));
+  scrollFrame = false;
+}
+window.addEventListener("scroll", () => {
+  if (!scrollFrame) {
+    scrollFrame = true;
+    requestAnimationFrame(updateScrollEffects);
+  }
+}, { passive: true });
+window.addEventListener("resize", updateScrollEffects, { passive: true });
+updateScrollEffects();
 const options = [...document.querySelectorAll(".analysis-item")];
 function syncOptions() {
   document.querySelector(".analysis-options").classList.toggle(
@@ -99,7 +130,7 @@ function configureMotion() {
         entry.target.classList.toggle("waiting", !entry.isIntersecting);
         entry.target.classList.toggle("in-view", entry.isIntersecting);
       }),
-    { threshold: 0, rootMargin: "0px 0px -24px 0px" },
+    { threshold: 0.08, rootMargin: "0px 0px -12% 0px" },
   );
   elements.forEach((element) => observer.observe(element));
 }

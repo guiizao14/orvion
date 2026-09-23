@@ -20,7 +20,41 @@ html {
 }
 body {
   margin: 0;
+  isolation: isolate;
   -webkit-font-smoothing: antialiased;
+}
+.scroll-atmosphere {
+  position: fixed;
+  z-index: -1;
+  inset: -15vh -12vw;
+  pointer-events: none;
+  opacity: 0.84;
+  background:
+    radial-gradient(ellipse 32vw 34vw at 12% calc(18% + var(--scroll-shift, 0px)), #304b743b, transparent 72%),
+    radial-gradient(ellipse 27vw 31vw at 86% calc(75% - var(--scroll-shift, 0px)), #ff5a5f24, transparent 72%);
+  background-size: 120% 120%;
+  animation: ambient-drift 18s ease-in-out infinite alternate;
+  transform: translate3d(0, 0, 0);
+  transition: transform 1.2s cubic-bezier(.2,.7,.2,1), opacity .7s ease;
+  will-change: transform;
+}
+html[data-scroll-direction="down"] .scroll-atmosphere { transform: translate3d(0, -24px, 0); }
+html[data-scroll-direction="up"] .scroll-atmosphere { transform: translate3d(0, 24px, 0); }
+.scroll-progress {
+  position: fixed;
+  z-index: 20;
+  inset: 0 0 auto;
+  height: 3px;
+  pointer-events: none;
+  background: #f4f6f810;
+}
+.scroll-progress span {
+  display: block;
+  width: var(--page-progress, 0%);
+  height: 100%;
+  background: linear-gradient(90deg, #ff5a5f, #ff9a7a);
+  box-shadow: 0 0 12px #ff5a5f99;
+  transition: width .12s linear;
 }
 a {
   color: inherit;
@@ -207,6 +241,7 @@ nav a:hover,
   font-size: 12px;
   font-weight: 650;
   white-space: nowrap;
+  transition: color .3s, background .3s, border-color .3s, transform .3s, opacity .35s, filter .35s, box-shadow .35s;
 }
 .button span,
 .text-link span {
@@ -231,7 +266,8 @@ nav a:hover,
 }
 .hero-actions:has(.primary:hover) .text-link,
 .contact-actions:has(.primary:hover) .text-link {
-  opacity: 0.42;
+  opacity: 0.24;
+  filter: blur(.5px);
 }
 .hero-actions:has(.text-link:hover) .primary,
 .contact-actions:has(.text-link:hover) .primary {
@@ -349,7 +385,7 @@ nav a:hover,
 .ambient {
   filter: blur(18px);
   mix-blend-mode: screen;
-  opacity: 0.65;
+  opacity: 0.88;
   background-size: 120% 120%;
 }
 .ambient-a {
@@ -362,8 +398,8 @@ nav a:hover,
 }
 .signal-field i {
   position: absolute;
-  width: 2px;
-  height: 2px;
+  width: 3px;
+  height: 3px;
   border-radius: 50%;
   background: #93a6bf;
   box-shadow: 0 0 12px #526176;
@@ -415,12 +451,13 @@ nav a:hover,
   animation: connect 1.6s ease both;
 }
 .flow path {
-  stroke-dasharray: 9 91;
-  animation: flow 5.4s cubic-bezier(0.45, 0, 0.2, 1) infinite;
-  animation-delay: 1.5s;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-dasharray: 22 78;
+  animation: flow 3.5s linear infinite;
 }
 .flow path + path {
-  animation-delay: 2s;
+  animation-delay: -1.75s;
 }
 .opportunity-halo {
   animation: breathe 5.4s ease-in-out infinite;
@@ -923,14 +960,14 @@ details[open] .plus:before {
 }
 .reveal {
   transition:
-    opacity 0.85s ease var(--reveal-delay, 0ms),
-    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
-    filter 0.85s ease var(--reveal-delay, 0ms);
+    opacity 0.9s ease var(--reveal-delay, 0ms),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    filter 0.9s ease var(--reveal-delay, 0ms);
 }
 .reveal.waiting {
-  opacity: 0;
-  transform: translateY(30px) scale(0.985);
-  filter: blur(3px);
+  opacity: 0.08;
+  transform: translateY(48px) scale(0.975);
+  filter: blur(5px);
 }
 .journey .waiting:before {
   transform: scaleX(0.1);
@@ -975,19 +1012,15 @@ details[open] .plus:before {
 }
 @keyframes flow {
   0% {
-    stroke-dashoffset: 110;
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.8;
-  }
-  70% {
-    opacity: 0.8;
-  }
-  90%,
-  100% {
     stroke-dashoffset: 0;
-    opacity: 0;
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -100;
+    opacity: 0.5;
   }
 }
 @keyframes breathe {
