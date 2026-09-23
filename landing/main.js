@@ -115,6 +115,8 @@ options.forEach((item, index) => {
 syncOptions();
 // Visible by default: no JS/observer must never hide page content.
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+const motionControl = document.querySelector(".motion-preference");
+let motionOverride = localStorage.getItem("orvion-motion") === "on";
 let observer;
 function configureMotion() {
   observer?.disconnect();
@@ -123,7 +125,7 @@ function configureMotion() {
     element.classList.remove("waiting");
     element.style.setProperty("--reveal-delay", `${(index % 4) * 75}ms`);
   });
-  if (reducedMotion.matches || !("IntersectionObserver" in window)) return;
+  if ((reducedMotion.matches && !motionOverride) || !("IntersectionObserver" in window)) return;
   observer = new IntersectionObserver(
     (entries) =>
       entries.forEach((entry) => {
@@ -134,8 +136,20 @@ function configureMotion() {
   );
   elements.forEach((element) => observer.observe(element));
 }
-configureMotion();
-reducedMotion.addEventListener("change", configureMotion);
+function syncMotionControl() {
+  document.documentElement.toggleAttribute("data-motion-override", motionOverride);
+  motionControl.hidden = !reducedMotion.matches;
+  motionControl.setAttribute("aria-pressed", String(motionOverride));
+  motionControl.textContent = motionOverride ? "Desativar movimento" : "Ativar movimento";
+  configureMotion();
+}
+motionControl.addEventListener("click", () => {
+  motionOverride = !motionOverride;
+  localStorage.setItem("orvion-motion", motionOverride ? "on" : "off");
+  syncMotionControl();
+});
+syncMotionControl();
+reducedMotion.addEventListener("change", syncMotionControl);
 if ("IntersectionObserver" in window) {
   const art = document.querySelector(".hero-art");
   let visible = true;

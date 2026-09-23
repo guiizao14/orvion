@@ -149,12 +149,22 @@ try {
         .evaluate((e) => getComputedStyle(e).animationName),
       "none",
     );
+    const motionControl = page.locator(".motion-preference");
+    assert.equal(await motionControl.isVisible(), true);
     assert.equal(
       await page.locator(".waiting").evaluateAll((elements) =>
         elements.every((element) => Number(getComputedStyle(element).opacity) > 0.99),
       ),
       true,
     );
+    await motionControl.click();
+    assert.equal(await motionControl.getAttribute("aria-pressed"), "true");
+    assert.equal(
+      await page.locator(".flow path").first().evaluate((e) => getComputedStyle(e).animationName),
+      "flow",
+    );
+    await motionControl.click();
+    assert.equal(await motionControl.getAttribute("aria-pressed"), "false");
     await page.mouse.move(0, 0);
     await page.locator(".hero-actions .primary").blur();
     await page.waitForTimeout(350);

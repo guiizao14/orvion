@@ -56,6 +56,23 @@ html[data-scroll-direction="up"] .scroll-atmosphere { transform: translate3d(0, 
   box-shadow: 0 0 12px #ff5a5f99;
   transition: width .12s linear;
 }
+.motion-preference {
+  position: fixed;
+  z-index: 21;
+  left: max(14px, env(safe-area-inset-left));
+  bottom: max(14px, env(safe-area-inset-bottom));
+  min-height: 40px;
+  padding: 9px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #0d1422ee;
+  color: var(--text);
+  box-shadow: 0 4px 24px #0006;
+  font: 600 11px/1.2 "Manrope Variable", Arial, sans-serif;
+  cursor: pointer;
+  backdrop-filter: blur(12px);
+}
+.motion-preference:hover { border-color: var(--accent); color: #ff9a7a; }
 a {
   color: inherit;
   text-decoration: none;
@@ -1502,35 +1519,35 @@ details[open] .plus:before {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  html {
+  html:not([data-motion-override]) {
     scroll-behavior: auto;
   }
-  *,
-  *:before,
-  *:after {
+  html:not([data-motion-override]) *,
+  html:not([data-motion-override]) *:before,
+  html:not([data-motion-override]) *:after {
     animation: none !important;
     transition: none !important;
   }
-  .reveal.waiting {
+  html:not([data-motion-override]) .reveal.waiting {
     opacity: 1;
     transform: none;
   }
-  .hero-symbol {
+  html:not([data-motion-override]) .hero-symbol {
     opacity: 1;
   }
-  .flow path {
+  html:not([data-motion-override]) .flow path {
     stroke-dasharray: none;
     opacity: 0.55;
   }
-  .art-wordmark {
+  html:not([data-motion-override]) .art-wordmark {
     opacity: 1;
   }
-  .ambient,
-  .signal-field,
-  .hero-symbol:after {
+  html:not([data-motion-override]) .ambient,
+  html:not([data-motion-override]) .signal-field,
+  html:not([data-motion-override]) .hero-symbol:after {
     animation: none !important;
   }
-  .journey .waiting:before {
+  html:not([data-motion-override]) .journey .waiting:before {
     transform: none;
   }
 }
